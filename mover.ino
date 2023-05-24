@@ -1,29 +1,21 @@
 /* mover.ino
    Team Vandal Robotics
-   May 22, 2023
-
-    OVERVIEW:
-    - Init a Node Handler, which integrates a Node which we create on the Arduino 
-      so that it can easily interface with the Nodes we create on the RPi
-    - Create a subscriber node, which is able to recieve messages along the 
-      ROS network of a specified data type
-    - Read the data sent via a message and move the motors */
+   May 22, 2023 */
 
 #include <ros.h>
 #include <ArduinoHardware.h> // accomidate for different Arduino hardware specs
 #include <std_msgs/Empty.h> // the message format we are sending info over
 
-#define M0_F 6;     // Motor 0 Forwards (front)
-#define M1_F 9;     // Motor 1 Forwards (back left)
-#define M2_F 11;    // Motor 2 Forwards (back right)
-#define M0_B 7;     // Motor 0 Backwards
-#define M1_B 8;
-#define M2_B 10;
+#define M0_F 6     // Motor 0 Forwards (front)
+#define M1_F 9     // Motor 1 Forwards (back left)
+#define M2_F 11   // Motor 2 Forwards (back right)
+#define M0_B 7     // Motor 0 Backwards
+#define M1_B 8
+#define M2_B 10
 
 ros::NodeHandle nh;
 
-/* void messageCb(ROS_MSG*)
-   Sends an empty message to roscore and flashes the built-in LED when the message has been recieved
+/* Sends an empty message to roscore and flashes the built-in LED when the message has been recieved
    successfully. */
 void messageCb(const std_msgs::Empty& toggle_msg)
 {
@@ -39,6 +31,7 @@ double mr1, mr2, mr3;         // proportional motor output
 void calc_motor_ratios(double x, double y, double w)
 {
   // Vector ratios that someone else figured out. See docs.
+  // components:     x      y     w
   double m1[] = { 0.67,     0, 0.33};
   double m2[] = {-0.33, -0.58, 0.33};
   double m3[] = {-0.33,  0.58, 0.33};
