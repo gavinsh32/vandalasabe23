@@ -54,77 +54,25 @@ void setup() {
 
 void loop()
 {
-  //                   x  y  w    s
-  double movestr1[] = {0, 1, 0, 150};
-  double movestr2[] = {0, -1, 0, 150};
-  double movestr3[] = {0, 1, 0, 150};
-  double movestr4[] = {0, -1, 0, 150};
-  double movestr5[] = {0.71, 0.71, 0, 150};
-  double movestr6[] = {-0.71, -0.71, 0, 150};
-  double movestr7[] = {-0.71, 0.71, 0, 150};
-  double movestr8[] = {0.71, -0.71, 0, 150};
-  double movestr9[] = {0, 0, 1, 150};
-  double movestr10[] = {0, 0, -1, 150};
+  double tests[10][4] = {{0, 1, 0, 150}, 
+                     {0, -1, 0, 150},
+                     {1, 0, 0, 150},
+                     {-1, 0, 0, 150},
+                     {0.71, 0.71, 0, 150},
+                     {-0.71, -0.71, 0, 150},
+                     {-0.71, 0.71, 0, 150},
+                     {0.71, -0.71, 0, 150},
+                     {0, 0, 1, 150},
+                     {0, 0, -1, 150}};
   
-  calc_base(movestr1);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr2);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr3);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr4);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr5);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr6);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr7);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr8);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr9);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
-  
-  calc_base(movestr10);
-  move_base();
-  delay(2000);
-  stop_base();
-  delay(2000);
+  for (int z = 0; z < 10; z++)
+  {
+    calc_base(tests[z]);
+    move_base();
+    delay(2000);
+    stop_base();
+    delay(1000);
+  } 
 }
 
 void calc_base(double * movestr)
